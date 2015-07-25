@@ -1,6 +1,10 @@
 #ifndef HVECTOR_H
 #define HVECTOR_H
 
+#include <assert.h>
+#include <math.h> 
+#include <stdio.h>
+
 #include "MathLib.h"
 
 template <class T> class hvector;
@@ -10,7 +14,6 @@ template <class T> hvector<T> operator-(const hvector<T>& v);
 template <class T> hvector<T> operator*(const hvector<T>& a, const double d);
 template <class T> hvector<T> operator*(const double d, const hvector<T>& a);
 template <class T> hvector<T> operator/(const hvector<T>& a, const double d);
-template <class T> hvector<T> operator^(const hvector<T>& a, const hvector<T>& b);
 template <class T> bool operator==(const hvector<T>& a, const hvector<T>& b);
 template <class T> bool operator!=(const hvector<T>& a, const hvector<T>& b);
 
@@ -73,6 +76,30 @@ public:
 	hvector<T> operator-(const hvector<T>& a) { return hvector<T>(n[0] - a.n[0], n[1] - a.n[1], n[2] - a.n[2]); n[3] - a.n[3]); }
 	hvector<T> operator+(const hvector<T>& a) { return hvector<T>(a.n[0] + n[0], a.n[1] + n[1], a.n[2] + n[2]); a.n[3] + n[3]); }
 
+	//---[ Length Methods ]----------------------
+
+	double length2() const
+	{
+		return n[0] * n[0] + n[1] * n[1] + n[2] * n[2] + n[3] * n[3];
+	}
+	double length() const
+	{
+		return sqrt(length2());
+	}
+
+	//---[ Zero Test ]---------------------------
+
+	bool isZero() const { return n[0] == 0 && n[1] == 0 && n[2] == 0 && n[3] == 0; }
+	void zeroElements() { memset(n, 0, 4 * sizeof(T)); }
+
+	//---[ Normalization ]-----------------------
+
+	void normalize() {
+		double len = length();
+		assert(len != 0);
+		n[0] /= len; n[1] /= len; n[2] /= len; n[3] /= len;
+	}
+
 };
 
 typedef hvector<int> hvectori;
@@ -83,22 +110,14 @@ typedef hvector<double> hvectord;
 template <class T>
 inline T& operator * (const hvector<T> & a, const hvector<T> & b)
 {
-	return (a.n[0] * b.n[0]) + (a.n[1] * b.n[1]) + (a.n[2] * b.n[2]);
+	return (a.n[0] * b.n[0]) + (a.n[1] * b.n[1]) + (a.n[2] * b.n[2]) + (a.n[3] * b.n[3]);
 }
 
-// Cross product
-template <class T>
-inline hvector<T>& operator ^ (const hvector<T> & a, const hvector<T> & b)
-{
-	return hvector<T>((a.n[1] * b.n[2]) - (a.n[2] * b.n[1]),
-		(a.n[2] * b.n[0]) - (a.n[0] * b.n[2]),
-		(a.n[0] * b.n[1]) - (a.n[1] * b.n[0]));
-}
 
 template <class T>
 inline bool operator==(const hvector<T>& a, const hvector<T>& b)
 {
-	return a.n[0] == b.n[0] && a.n[1] == b.n[1] && a.n[2] == b.n[2];
+	return (a.n[0] == b.n[0]) && (a.n[1] == b.n[1]) && (a.n[2] == b.n[2]) && (a.n[3] == b.n[3]);
 }
 
 

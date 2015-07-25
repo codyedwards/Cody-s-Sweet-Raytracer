@@ -1,6 +1,10 @@
 #ifndef VECTOR3_H
 #define VECTOR3_H
 
+#include <assert.h>
+#include <math.h> 
+#include <stdio.h>
+
 #include "MathLib.h"
 
 template <class T> class vector3;
@@ -73,6 +77,40 @@ public:
 	vector3<T> operator-(const vector3<T>& a) { return vector3<T>(n[0] - a.n[0], n[1] - a.n[1], n[2] - a.n[2]); }
 	vector3<T> operator+(const vector3<T>& a) { return vector3<T>(a.n[0] + n[0], a.n[1] + n[1], a.n[2] + n[2]); }
 
+	const T* getPointer() const { return n; }
+
+	//---[ Length Methods ]----------------------
+
+	double length2() const
+	{
+		return n[0] * n[0] + n[1] * n[1] + n[2] * n[2];
+	}
+	double length() const
+	{
+		return sqrt(length2());
+	}
+
+	//---[ Normalization ]-----------------------
+
+	void normalize() {
+		double len = length();
+		assert(len != 0);
+		n[0] /= len; n[1] /= len; n[2] /= len;
+	}
+
+	void clamp() {
+		int i;
+		for (i = 0; i < 3; i++) {
+			if (n[i] < 0) n[i] = 0.0;
+			if (n[i] > 1) n[i] = 1.0;
+		}
+	}
+
+	//---[ Zero Test ]---------------------------
+
+	bool iszero() { return ((n[0] == 0 && n[1] == 0 && n[2] == 0) ? true : false); };
+	void zeroElements() { memset(n, 0, sizeof(T)* 3); }
+
 };
 
 typedef vector3<int> vector3i;
@@ -98,7 +136,7 @@ inline vector3<T>& operator ^ (const vector3<T> & a, const vector3<T> & b)
 template <class T>
 inline bool operator==(const vector3<T>& a, const vector3<T>& b)
 {
-	return a.n[0] == b.n[0] && a.n[1] == b.n[1] && a.n[2] == b.n[2];
+	return (a.n[0] == b.n[0]) && (a.n[1] == b.n[1]) && (a.n[2] == b.n[2]);
 }
 
 

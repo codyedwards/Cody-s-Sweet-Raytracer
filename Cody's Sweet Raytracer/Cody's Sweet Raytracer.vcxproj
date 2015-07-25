@@ -64,13 +64,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Cody%27s Sweet Raytracer\Cody%27s Sweet Raytracer\hvector.h" />
-    <ClInclude Include="..\..\Cody%27s Sweet Raytracer\Cody%27s Sweet Raytracer\MathLib.h" />
-    <ClInclude Include="..\..\Cody%27s Sweet Raytracer\Cody%27s Sweet Raytracer\vector2.h" />
-    <ClInclude Include="..\..\Cody%27s Sweet Raytracer\Cody%27s Sweet Raytracer\vector3.h" />
+    <ClInclude Include="..\..\..\Cody%27s Sweet Raytracer\Cody-s-Sweet-Raytracer\Cody%27s Sweet Raytracer\hvector.h" />
+    <ClInclude Include="..\..\..\Cody%27s Sweet Raytracer\Cody-s-Sweet-Raytracer\Cody%27s Sweet Raytracer\MathLib.h" />
+    <ClInclude Include="..\..\..\Cody%27s Sweet Raytracer\Cody-s-Sweet-Raytracer\Cody%27s Sweet Raytracer\transform.h" />
+    <ClInclude Include="..\..\..\Cody%27s Sweet Raytracer\Cody-s-Sweet-Raytracer\Cody%27s Sweet Raytracer\vector2.h" />
+    <ClInclude Include="..\..\..\Cody%27s Sweet Raytracer\Cody-s-Sweet-Raytracer\Cody%27s Sweet Raytracer\vector3.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Cody%27s Sweet Raytracer\Cody%27s Sweet Raytracer\CodysSweetRaytracer.cpp" />
+    <ClCompile Include="..\..\..\Cody%27s Sweet Raytracer\Cody-s-Sweet-Raytracer\Cody%27s Sweet Raytracer\CodysSweetRaytracer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,10 @@
 #ifndef VECTOR2_H
 #define VECTOR2_H
 
+#include <assert.h>
+#include <math.h> 
+#include <stdio.h>
+
 #include "MathLib.h"
 
 template <class T> class vector2;
@@ -73,6 +77,33 @@ public:
 	vector2<T> operator-(const vector2<T>& a) { return vector2<T>(n[0] - a.n[0], n[1] - a.n[1]); }
 	vector2<T> operator+(const vector2<T>& a) { return vector2<T>(a.n[0] + n[0], a.n[1] + n[1]); }
 
+	//---[ Conversion Operators ]----------------
+
+	const T* getPointer() const { return n; }
+
+	//---[ Length Methods ]----------------------
+
+	double length2() const
+	{
+		return n[0] * n[0] + n[1] * n[1];
+	}
+	double length() const
+	{
+		return sqrt(length2());
+	}
+
+	//---[ Normalization ]-----------------------
+
+	void normalize() {
+		double len = length();
+		assert(len != 0);
+		n[0] /= len; n[1] /= len;
+	}
+
+	//---[ Zero Test ]---------------------------
+
+	bool iszero() { return ((n[0] == 0 && n[1] == 0) ? true : false); };
+	void zeroElements() { memset(n, 0, sizeof(T)* 2); }
 };
 
 typedef vector2<int> vector2i;
@@ -96,7 +127,7 @@ inline vector2<T>& operator ^ (const vector2<T> & a, const vector2<T> & b)
 template <class T> 
 inline bool operator==(const vector2<T>& a, const vector2<T>& b)
 {
-	return a.n[0] == b.n[0] && a.n[1] == b.n[1];
+	return (a.n[0] == b.n[0]) && (a.n[1] == b.n[1]);
 }
 
 

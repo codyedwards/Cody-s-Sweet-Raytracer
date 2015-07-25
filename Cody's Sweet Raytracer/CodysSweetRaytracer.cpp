@@ -15,6 +15,5 @@ int main(int argc, const char* argv[])
 	v2 += v2;
 	cout << "(" << v1[0] << ", " << v1[1] << ")";
 	cout << "(" << v2[0] << ", " << v2[1] << ")";
-	getchar();
 	return 0;
 }
