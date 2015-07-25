@@ -21,11 +21,11 @@ template <class T> bool operator!=(const vector3<T>& a, const vector3<T>& b);
 template <class T>
 class vector3
 {
-	// x, y, z
-	T n[3];
+	
 
 public:
-
+	// x, y, z
+	T n[3];
 
 	// Constructors
 	vector3() { n[0] = 0.0; n[1] = 0.0; n[2] = 0.0; }
@@ -74,8 +74,8 @@ public:
 
 	//---[ Arithmetic Operators ]----------------
 
-	vector3<T> operator-(const vector3<T>& a) { return vector3<T>(n[0] - a.n[0], n[1] - a.n[1], n[2] - a.n[2]); }
-	vector3<T> operator+(const vector3<T>& a) { return vector3<T>(a.n[0] + n[0], a.n[1] + n[1], a.n[2] + n[2]); }
+	vector3<T> operator-(const vector3<T>& a) const { return vector3<T>(n[0] - a.n[0], n[1] - a.n[1], n[2] - a.n[2]); }
+	vector3<T> operator+(const vector3<T>& a) const { return vector3<T>(a.n[0] + n[0], a.n[1] + n[1], a.n[2] + n[2]); }
 
 	const T* getPointer() const { return n; }
 
@@ -117,20 +117,36 @@ typedef vector3<int> vector3i;
 typedef vector3<float> vector3f;
 typedef vector3<double> vector3d;
 
-// Dot product
 template <class T>
-inline T& operator * (const vector3<T> & a, const vector3<T> & b)
-{
-	return (a.n[0] * b.n[0]) + (a.n[1] * b.n[1]) + (a.n[2] * b.n[2]);
+inline vector3<T> operator -(const vector3<T>& v) {
+	return vector3<T>(-v.n[0], -v.n[1], -v.n[2]);
 }
 
-// Cross product
 template <class T>
-inline vector3<T>& operator ^ (const vector3<T> & a, const vector3<T> & b)
-{
-	return vector3<T>((a.n[1] * b.n[2]) - (a.n[2] * b.n[1]),
-						(a.n[2] * b.n[0]) - (a.n[0] * b.n[2]),
-						(a.n[0] * b.n[1]) - (a.n[1] * b.n[0]));
+inline vector3<T> operator *(const vector3<T>& a, const double d) {
+	return vector3<T>(a.n[0] * d, a.n[1] * d, a.n[2] * d);
+}
+
+template <class T>
+inline vector3<T> operator *(const double d, const vector3<T>& a) {
+	return a * d;
+}
+
+template <class T>
+inline T operator *(const vector3<T>& a, const vector3<T>& b){
+	return a.n[0] * b.n[0] + a.n[1] * b.n[1] + a.n[2] * b.n[2];
+}
+
+template <class T>
+inline vector3<T> operator /(const vector3<T>& a, const double d){
+	return vector3<T>(a.n[0] / d, a.n[1] / d, a.n[2] / d);
+}
+
+template <class T>
+inline vector3<T> operator ^(const vector3<T>& a, const vector3<T>& b) {
+	return vector3<T>(a.n[1] * b.n[2] - a.n[2] * b.n[1],
+		a.n[2] * b.n[0] - a.n[0] * b.n[2],
+		a.n[0] * b.n[1] - a.n[1] * b.n[0]);
 }
 
 template <class T>

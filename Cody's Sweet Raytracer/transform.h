@@ -170,6 +170,10 @@ public:
 		return b;
 	}
 
+	typedef transform<int> transformi;
+	typedef transform<float> transformf;
+	typedef transform<double> transformd;
+
 	template <class T>
 	inline transform<T> transform<T>::createRotation(T angle, float x, float y, float z) {
 		double c = cos(angle);

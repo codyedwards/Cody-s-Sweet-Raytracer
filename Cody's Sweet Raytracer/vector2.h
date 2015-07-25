@@ -21,11 +21,11 @@ template <class T> bool operator!=(const vector2<T>& a, const vector2<T>& b);
 template <class T>
 class vector2
 {
-	// x, y
-	T n[2];
+	
 
 public:
-	
+	// x, y
+	T n[2];
 
 	// Constructors
 	vector2() { n[0] = 0.0; n[1] = 0.0; }
@@ -74,8 +74,8 @@ public:
 
 	//---[ Arithmetic Operators ]----------------
 
-	vector2<T> operator-(const vector2<T>& a) { return vector2<T>(n[0] - a.n[0], n[1] - a.n[1]); }
-	vector2<T> operator+(const vector2<T>& a) { return vector2<T>(a.n[0] + n[0], a.n[1] + n[1]); }
+	vector2<T> operator-(const vector2<T>& a) const { return vector2<T>(n[0] - a.n[0], n[1] - a.n[1]); }
+	vector2<T> operator+(const vector2<T>& a) const { return vector2<T>(a.n[0] + n[0], a.n[1] + n[1]); }
 
 	//---[ Conversion Operators ]----------------
 

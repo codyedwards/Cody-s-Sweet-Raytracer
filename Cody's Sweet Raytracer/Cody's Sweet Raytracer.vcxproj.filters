@@ -30,6 +30,12 @@
     <ClInclude Include="..\..\..\Cody%27s Sweet Raytracer\Cody-s-Sweet-Raytracer\Cody%27s Sweet Raytracer\transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Cody%27s Sweet Raytracer\Cody-s-Sweet-Raytracer\Cody%27s Sweet Raytracer\ray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Cody%27s Sweet Raytracer\Cody-s-Sweet-Raytracer\Cody%27s Sweet Raytracer\Shape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Cody%27s Sweet Raytracer\Cody-s-Sweet-Raytracer\Cody%27s Sweet Raytracer\CodysSweetRaytracer.cpp">
